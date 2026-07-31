@@ -48,15 +48,17 @@ export function SectionCard({
   actions,
   children,
   padded = true,
+  className,
 }: {
   title?: string;
   description?: string;
   actions?: ReactNode;
   children: ReactNode;
   padded?: boolean;
+  className?: string;
 }) {
   return (
-    <section className="fp-surface overflow-hidden">
+    <section className={["fp-surface overflow-hidden", className].filter(Boolean).join(" ")}>
       {(title || actions) && (
         <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b border-border px-4 py-3 sm:px-5">
           <div className="min-w-0">

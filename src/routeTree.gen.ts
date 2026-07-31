@@ -10,15 +10,55 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as HelpRouteImport } from './routes/help'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as ManagerRouteImport } from './routes/manager'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as StudentRouteImport } from './routes/student'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminManagersRouteImport } from './routes/admin.managers'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as ManagerIndexRouteImport } from './routes/manager.index'
+import { Route as ManagerMenuRouteImport } from './routes/manager.menu'
+import { Route as ManagerTodayRouteImport } from './routes/manager.today'
 import { Route as StudentIndexRouteImport } from './routes/student.index'
+import { Route as StudentBillRouteImport } from './routes/student.bill'
+import { Route as StudentFeedbackRouteImport } from './routes/student.feedback'
+import { Route as StudentMealCalendarRouteImport } from './routes/student.meal-calendar'
+import { Route as StudentMealHistoryRouteImport } from './routes/student.meal-history'
+import { Route as StudentPaymentsRouteImport } from './routes/student.payments'
+import { Route as StudentPlansRouteImport } from './routes/student.plans'
+import { Route as StudentSubscriptionRouteImport } from './routes/student.subscription'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeaturesRoute = FeaturesRouteImport.update({
+  id: '/features',
+  path: '/features',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
@@ -26,9 +66,24 @@ const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
   path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HelpRoute = HelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManagerRoute = ManagerRouteImport.update({
+  id: '/manager',
+  path: '/manager',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RegisterRoute = RegisterRouteImport.update({
@@ -41,56 +96,254 @@ const StudentRoute = StudentRouteImport.update({
   path: '/student',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminManagersRoute = AdminManagersRouteImport.update({
+  id: '/managers',
+  path: '/managers',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
+const ManagerIndexRoute = ManagerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ManagerRoute,
+} as any)
+const ManagerMenuRoute = ManagerMenuRouteImport.update({
+  id: '/menu',
+  path: '/menu',
+  getParentRoute: () => ManagerRoute,
+} as any)
+const ManagerTodayRoute = ManagerTodayRouteImport.update({
+  id: '/today',
+  path: '/today',
+  getParentRoute: () => ManagerRoute,
+} as any)
 const StudentIndexRoute = StudentIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => StudentRoute,
 } as any)
+const StudentBillRoute = StudentBillRouteImport.update({
+  id: '/bill',
+  path: '/bill',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentFeedbackRoute = StudentFeedbackRouteImport.update({
+  id: '/feedback',
+  path: '/feedback',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentMealCalendarRoute = StudentMealCalendarRouteImport.update({
+  id: '/meal-calendar',
+  path: '/meal-calendar',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentMealHistoryRoute = StudentMealHistoryRouteImport.update({
+  id: '/meal-history',
+  path: '/meal-history',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentPaymentsRoute = StudentPaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentPlansRoute = StudentPlansRouteImport.update({
+  id: '/plans',
+  path: '/plans',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentSubscriptionRoute = StudentSubscriptionRouteImport.update({
+  id: '/subscription',
+  path: '/subscription',
+  getParentRoute: () => StudentRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/features': typeof FeaturesRoute
   '/forgot-password': typeof ForgotPasswordRoute
+  '/help': typeof HelpRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/login': typeof LoginRoute
+  '/manager': typeof ManagerRouteWithChildren
   '/register': typeof RegisterRoute
   '/student': typeof StudentRouteWithChildren
+  '/admin/managers': typeof AdminManagersRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/manager/menu': typeof ManagerMenuRoute
+  '/manager/today': typeof ManagerTodayRoute
+  '/student/bill': typeof StudentBillRoute
+  '/student/feedback': typeof StudentFeedbackRoute
+  '/student/meal-calendar': typeof StudentMealCalendarRoute
+  '/student/meal-history': typeof StudentMealHistoryRoute
+  '/student/payments': typeof StudentPaymentsRoute
+  '/student/plans': typeof StudentPlansRoute
+  '/student/subscription': typeof StudentSubscriptionRoute
+  '/admin/': typeof AdminIndexRoute
+  '/manager/': typeof ManagerIndexRoute
   '/student/': typeof StudentIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/features': typeof FeaturesRoute
   '/forgot-password': typeof ForgotPasswordRoute
+  '/help': typeof HelpRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/admin/managers': typeof AdminManagersRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/manager/menu': typeof ManagerMenuRoute
+  '/manager/today': typeof ManagerTodayRoute
+  '/student/bill': typeof StudentBillRoute
+  '/student/feedback': typeof StudentFeedbackRoute
+  '/student/meal-calendar': typeof StudentMealCalendarRoute
+  '/student/meal-history': typeof StudentMealHistoryRoute
+  '/student/payments': typeof StudentPaymentsRoute
+  '/student/plans': typeof StudentPlansRoute
+  '/student/subscription': typeof StudentSubscriptionRoute
+  '/admin': typeof AdminIndexRoute
+  '/manager': typeof ManagerIndexRoute
   '/student': typeof StudentIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/features': typeof FeaturesRoute
   '/forgot-password': typeof ForgotPasswordRoute
+  '/help': typeof HelpRoute
+  '/how-it-works': typeof HowItWorksRoute
   '/login': typeof LoginRoute
+  '/manager': typeof ManagerRouteWithChildren
   '/register': typeof RegisterRoute
   '/student': typeof StudentRouteWithChildren
+  '/admin/managers': typeof AdminManagersRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/manager/menu': typeof ManagerMenuRoute
+  '/manager/today': typeof ManagerTodayRoute
+  '/student/bill': typeof StudentBillRoute
+  '/student/feedback': typeof StudentFeedbackRoute
+  '/student/meal-calendar': typeof StudentMealCalendarRoute
+  '/student/meal-history': typeof StudentMealHistoryRoute
+  '/student/payments': typeof StudentPaymentsRoute
+  '/student/plans': typeof StudentPlansRoute
+  '/student/subscription': typeof StudentSubscriptionRoute
+  '/admin/': typeof AdminIndexRoute
+  '/manager/': typeof ManagerIndexRoute
   '/student/': typeof StudentIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/forgot-password' | '/login' | '/register' | '/student' | '/student/'
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/contact'
+    | '/features'
+    | '/forgot-password'
+    | '/help'
+    | '/how-it-works'
+    | '/login'
+    | '/manager'
+    | '/register'
+    | '/student'
+    | '/admin/managers'
+    | '/admin/users'
+    | '/manager/menu'
+    | '/manager/today'
+    | '/student/bill'
+    | '/student/feedback'
+    | '/student/meal-calendar'
+    | '/student/meal-history'
+    | '/student/payments'
+    | '/student/plans'
+    | '/student/subscription'
+    | '/admin/'
+    | '/manager/'
+    | '/student/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/forgot-password' | '/login' | '/register' | '/student'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/features'
+    | '/forgot-password'
+    | '/help'
+    | '/how-it-works'
+    | '/login'
+    | '/register'
+    | '/admin/managers'
+    | '/admin/users'
+    | '/manager/menu'
+    | '/manager/today'
+    | '/student/bill'
+    | '/student/feedback'
+    | '/student/meal-calendar'
+    | '/student/meal-history'
+    | '/student/payments'
+    | '/student/plans'
+    | '/student/subscription'
+    | '/admin'
+    | '/manager'
+    | '/student'
   id:
     | '__root__'
     | '/'
+    | '/about'
+    | '/admin'
+    | '/contact'
+    | '/features'
     | '/forgot-password'
+    | '/help'
+    | '/how-it-works'
     | '/login'
+    | '/manager'
     | '/register'
     | '/student'
+    | '/admin/managers'
+    | '/admin/users'
+    | '/manager/menu'
+    | '/manager/today'
+    | '/student/bill'
+    | '/student/feedback'
+    | '/student/meal-calendar'
+    | '/student/meal-history'
+    | '/student/payments'
+    | '/student/plans'
+    | '/student/subscription'
+    | '/admin/'
+    | '/manager/'
     | '/student/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  ContactRoute: typeof ContactRoute
+  FeaturesRoute: typeof FeaturesRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
+  HelpRoute: typeof HelpRoute
+  HowItWorksRoute: typeof HowItWorksRoute
   LoginRoute: typeof LoginRoute
+  ManagerRoute: typeof ManagerRouteWithChildren
   RegisterRoute: typeof RegisterRoute
   StudentRoute: typeof StudentRouteWithChildren
 }
@@ -104,6 +357,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/features': {
+      id: '/features'
+      path: '/features'
+      fullPath: '/features'
+      preLoaderRoute: typeof FeaturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/forgot-password': {
       id: '/forgot-password'
       path: '/forgot-password'
@@ -111,11 +392,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/manager': {
+      id: '/manager'
+      path: '/manager'
+      fullPath: '/manager'
+      preLoaderRoute: typeof ManagerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/register': {
@@ -132,6 +434,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/managers': {
+      id: '/admin/managers'
+      path: '/managers'
+      fullPath: '/admin/managers'
+      preLoaderRoute: typeof AdminManagersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/manager/': {
+      id: '/manager/'
+      path: '/'
+      fullPath: '/manager/'
+      preLoaderRoute: typeof ManagerIndexRouteImport
+      parentRoute: typeof ManagerRoute
+    }
+    '/manager/menu': {
+      id: '/manager/menu'
+      path: '/menu'
+      fullPath: '/manager/menu'
+      preLoaderRoute: typeof ManagerMenuRouteImport
+      parentRoute: typeof ManagerRoute
+    }
+    '/manager/today': {
+      id: '/manager/today'
+      path: '/today'
+      fullPath: '/manager/today'
+      preLoaderRoute: typeof ManagerTodayRouteImport
+      parentRoute: typeof ManagerRoute
+    }
     '/student/': {
       id: '/student/'
       path: '/'
@@ -139,14 +483,106 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentIndexRouteImport
       parentRoute: typeof StudentRoute
     }
+    '/student/bill': {
+      id: '/student/bill'
+      path: '/bill'
+      fullPath: '/student/bill'
+      preLoaderRoute: typeof StudentBillRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/feedback': {
+      id: '/student/feedback'
+      path: '/feedback'
+      fullPath: '/student/feedback'
+      preLoaderRoute: typeof StudentFeedbackRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/meal-calendar': {
+      id: '/student/meal-calendar'
+      path: '/meal-calendar'
+      fullPath: '/student/meal-calendar'
+      preLoaderRoute: typeof StudentMealCalendarRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/meal-history': {
+      id: '/student/meal-history'
+      path: '/meal-history'
+      fullPath: '/student/meal-history'
+      preLoaderRoute: typeof StudentMealHistoryRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/payments': {
+      id: '/student/payments'
+      path: '/payments'
+      fullPath: '/student/payments'
+      preLoaderRoute: typeof StudentPaymentsRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/plans': {
+      id: '/student/plans'
+      path: '/plans'
+      fullPath: '/student/plans'
+      preLoaderRoute: typeof StudentPlansRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/subscription': {
+      id: '/student/subscription'
+      path: '/subscription'
+      fullPath: '/student/subscription'
+      preLoaderRoute: typeof StudentSubscriptionRouteImport
+      parentRoute: typeof StudentRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminManagersRoute: typeof AdminManagersRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminManagersRoute: AdminManagersRoute,
+  AdminUsersRoute: AdminUsersRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface ManagerRouteChildren {
+  ManagerMenuRoute: typeof ManagerMenuRoute
+  ManagerTodayRoute: typeof ManagerTodayRoute
+  ManagerIndexRoute: typeof ManagerIndexRoute
+}
+
+const ManagerRouteChildren: ManagerRouteChildren = {
+  ManagerMenuRoute: ManagerMenuRoute,
+  ManagerTodayRoute: ManagerTodayRoute,
+  ManagerIndexRoute: ManagerIndexRoute,
+}
+
+const ManagerRouteWithChildren =
+  ManagerRoute._addFileChildren(ManagerRouteChildren)
+
 interface StudentRouteChildren {
+  StudentBillRoute: typeof StudentBillRoute
+  StudentFeedbackRoute: typeof StudentFeedbackRoute
+  StudentMealCalendarRoute: typeof StudentMealCalendarRoute
+  StudentMealHistoryRoute: typeof StudentMealHistoryRoute
+  StudentPaymentsRoute: typeof StudentPaymentsRoute
+  StudentPlansRoute: typeof StudentPlansRoute
+  StudentSubscriptionRoute: typeof StudentSubscriptionRoute
   StudentIndexRoute: typeof StudentIndexRoute
 }
 
 const StudentRouteChildren: StudentRouteChildren = {
+  StudentBillRoute: StudentBillRoute,
+  StudentFeedbackRoute: StudentFeedbackRoute,
+  StudentMealCalendarRoute: StudentMealCalendarRoute,
+  StudentMealHistoryRoute: StudentMealHistoryRoute,
+  StudentPaymentsRoute: StudentPaymentsRoute,
+  StudentPlansRoute: StudentPlansRoute,
+  StudentSubscriptionRoute: StudentSubscriptionRoute,
   StudentIndexRoute: StudentIndexRoute,
 }
 
@@ -155,8 +591,15 @@ const StudentRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AdminRoute: AdminRouteWithChildren,
+  ContactRoute: ContactRoute,
+  FeaturesRoute: FeaturesRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
+  HelpRoute: HelpRoute,
+  HowItWorksRoute: HowItWorksRoute,
   LoginRoute: LoginRoute,
+  ManagerRoute: ManagerRouteWithChildren,
   RegisterRoute: RegisterRoute,
   StudentRoute: StudentRouteWithChildren,
 }
