@@ -26,6 +26,8 @@ import { Route as AdminManagersRouteImport } from './routes/admin.managers'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as ManagerIndexRouteImport } from './routes/manager.index'
 import { Route as ManagerMenuRouteImport } from './routes/manager.menu'
+import { Route as ManagerPaymentsRouteImport } from './routes/manager.payments'
+import { Route as ManagerSubscribersRouteImport } from './routes/manager.subscribers'
 import { Route as ManagerTodayRouteImport } from './routes/manager.today'
 import { Route as StudentIndexRouteImport } from './routes/student.index'
 import { Route as StudentBillRouteImport } from './routes/student.bill'
@@ -121,6 +123,16 @@ const ManagerMenuRoute = ManagerMenuRouteImport.update({
   path: '/menu',
   getParentRoute: () => ManagerRoute,
 } as any)
+const ManagerPaymentsRoute = ManagerPaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
+  getParentRoute: () => ManagerRoute,
+} as any)
+const ManagerSubscribersRoute = ManagerSubscribersRouteImport.update({
+  id: '/subscribers',
+  path: '/subscribers',
+  getParentRoute: () => ManagerRoute,
+} as any)
 const ManagerTodayRoute = ManagerTodayRouteImport.update({
   id: '/today',
   path: '/today',
@@ -183,6 +195,8 @@ export interface FileRoutesByFullPath {
   '/admin/managers': typeof AdminManagersRoute
   '/admin/users': typeof AdminUsersRoute
   '/manager/menu': typeof ManagerMenuRoute
+  '/manager/payments': typeof ManagerPaymentsRoute
+  '/manager/subscribers': typeof ManagerSubscribersRoute
   '/manager/today': typeof ManagerTodayRoute
   '/student/bill': typeof StudentBillRoute
   '/student/feedback': typeof StudentFeedbackRoute
@@ -208,6 +222,8 @@ export interface FileRoutesByTo {
   '/admin/managers': typeof AdminManagersRoute
   '/admin/users': typeof AdminUsersRoute
   '/manager/menu': typeof ManagerMenuRoute
+  '/manager/payments': typeof ManagerPaymentsRoute
+  '/manager/subscribers': typeof ManagerSubscribersRoute
   '/manager/today': typeof ManagerTodayRoute
   '/student/bill': typeof StudentBillRoute
   '/student/feedback': typeof StudentFeedbackRoute
@@ -237,6 +253,8 @@ export interface FileRoutesById {
   '/admin/managers': typeof AdminManagersRoute
   '/admin/users': typeof AdminUsersRoute
   '/manager/menu': typeof ManagerMenuRoute
+  '/manager/payments': typeof ManagerPaymentsRoute
+  '/manager/subscribers': typeof ManagerSubscribersRoute
   '/manager/today': typeof ManagerTodayRoute
   '/student/bill': typeof StudentBillRoute
   '/student/feedback': typeof StudentFeedbackRoute
@@ -267,6 +285,8 @@ export interface FileRouteTypes {
     | '/admin/managers'
     | '/admin/users'
     | '/manager/menu'
+    | '/manager/payments'
+    | '/manager/subscribers'
     | '/manager/today'
     | '/student/bill'
     | '/student/feedback'
@@ -292,6 +312,8 @@ export interface FileRouteTypes {
     | '/admin/managers'
     | '/admin/users'
     | '/manager/menu'
+    | '/manager/payments'
+    | '/manager/subscribers'
     | '/manager/today'
     | '/student/bill'
     | '/student/feedback'
@@ -320,6 +342,8 @@ export interface FileRouteTypes {
     | '/admin/managers'
     | '/admin/users'
     | '/manager/menu'
+    | '/manager/payments'
+    | '/manager/subscribers'
     | '/manager/today'
     | '/student/bill'
     | '/student/feedback'
@@ -469,6 +493,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ManagerMenuRouteImport
       parentRoute: typeof ManagerRoute
     }
+    '/manager/payments': {
+      id: '/manager/payments'
+      path: '/payments'
+      fullPath: '/manager/payments'
+      preLoaderRoute: typeof ManagerPaymentsRouteImport
+      parentRoute: typeof ManagerRoute
+    }
+    '/manager/subscribers': {
+      id: '/manager/subscribers'
+      path: '/subscribers'
+      fullPath: '/manager/subscribers'
+      preLoaderRoute: typeof ManagerSubscribersRouteImport
+      parentRoute: typeof ManagerRoute
+    }
     '/manager/today': {
       id: '/manager/today'
       path: '/today'
@@ -551,12 +589,16 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface ManagerRouteChildren {
   ManagerMenuRoute: typeof ManagerMenuRoute
+  ManagerPaymentsRoute: typeof ManagerPaymentsRoute
+  ManagerSubscribersRoute: typeof ManagerSubscribersRoute
   ManagerTodayRoute: typeof ManagerTodayRoute
   ManagerIndexRoute: typeof ManagerIndexRoute
 }
 
 const ManagerRouteChildren: ManagerRouteChildren = {
   ManagerMenuRoute: ManagerMenuRoute,
+  ManagerPaymentsRoute: ManagerPaymentsRoute,
+  ManagerSubscribersRoute: ManagerSubscribersRoute,
   ManagerTodayRoute: ManagerTodayRoute,
   ManagerIndexRoute: ManagerIndexRoute,
 }
