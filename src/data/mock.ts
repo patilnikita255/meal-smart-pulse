@@ -195,12 +195,12 @@ const MENU_BANK: Record<MealType, string[]> = {
 
 export function menuFor(date: string, meal: MealType) {
   const day = new Date(date + "T00:00:00").getDay();
-  return MENU_BANK[meal][day];
+  return MENU_BANK[meal][day]!;
 }
 
 export const subscriptions: Subscription[] = STUDENT_NAMES.map((name, i) => {
-  const student = users[i];
-  const planPick = i % 3 === 0 ? plans[1] : i % 3 === 1 ? plans[0] : plans[2];
+  const student = users[i]!;
+  const planPick = (i % 3 === 0 ? plans[1] : i % 3 === 1 ? plans[0] : plans[2])!;
   const statusPool: Subscription["status"][] = [
     "Active",
     "Active",
@@ -211,7 +211,7 @@ export const subscriptions: Subscription[] = STUDENT_NAMES.map((name, i) => {
     "Cancelled",
     "Pending",
   ];
-  const status = i === 0 ? "Active" : statusPool[i % statusPool.length];
+  const status = i === 0 ? ("Active" as const) : statusPool[i % statusPool.length]!;
   const start = addDays(BASE_DATE, -(i % 20) - 10);
   return {
     id: `SUB-${String(i + 1).padStart(3, "0")}`,
@@ -249,7 +249,6 @@ export const mealRecords: MealRecord[] = (() => {
         selection: skipped ? "Skipped" : "Selected",
         attendance: offset < 0 ? (skipped ? "Missed" : "Attended") : "Upcoming",
         rating: offset < 0 && !skipped ? 3 + Math.round(rand(seed + 7) * 2) : null,
-        feedback: undefined,
       });
     });
   }
@@ -354,15 +353,15 @@ export const complaints: Complaint[] = [
 ];
 
 export const feedback: FeedbackEntry[] = Array.from({ length: 24 }, (_, i) => {
-  const student = users[i % 20];
+  const student = users[i % 20]!;
   return {
     id: `FB-${i + 1}`,
     studentId: student.id,
     studentName: student.name,
     date: iso(addDays(BASE_DATE, -(i % 14) - 1)),
-    meal: MEAL_TYPES[i % 3],
+    meal: MEAL_TYPES[i % 3]!,
     rating: 3 + Math.round(rand(i + 21) * 2),
-    comment: i % 4 === 0 ? "Good taste and served hot." : undefined,
+    ...(i % 4 === 0 ? { comment: "Good taste and served hot." } : {}),
   };
 });
 
