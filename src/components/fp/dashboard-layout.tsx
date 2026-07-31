@@ -134,7 +134,7 @@ function NotificationBell({ role }: { role: Role }) {
         </ScrollArea>
         <div className="border-t border-border p-2">
           <Button asChild variant="ghost" size="sm" className="w-full">
-            <Link to={`${roleHome[role]}/notifications`}>View all notifications</Link>
+            <Link to={`${roleHome[role]}/notifications` as never}>View all notifications</Link>
           </Button>
         </div>
       </PopoverContent>
