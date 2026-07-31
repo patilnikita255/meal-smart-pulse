@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AlertTriangle, CheckCircle2, TrendingDown } from "lucide-react";
 import { PageHeader, SectionCard } from "@/components/fp/page-header";
@@ -20,7 +21,7 @@ export const Route = createFileRoute("/manager/today")({
   component: TodayMeals,
 });
 
-function statusFor(pct: number): { label: string; tone: "success" | "warning" | "danger"; icon: JSX.Element } {
+function statusFor(pct: number): { label: string; tone: "success" | "warning" | "danger"; icon: ReactElement } {
   if (pct <= 8) return { label: "Good", tone: "success", icon: <CheckCircle2 className="size-4" /> };
   if (pct <= 15) return { label: "Warning", tone: "warning", icon: <TrendingDown className="size-4" /> };
   return { label: "High Wastage", tone: "danger", icon: <AlertTriangle className="size-4" /> };

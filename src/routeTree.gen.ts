@@ -24,6 +24,7 @@ import { Route as StudentRouteImport } from './routes/student'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminManagersRouteImport } from './routes/admin.managers'
 import { Route as AdminPlansRouteImport } from './routes/admin.plans'
+import { Route as AdminSubscriptionsRouteImport } from './routes/admin.subscriptions'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as ManagerIndexRouteImport } from './routes/manager.index'
 import { Route as ManagerMenuRouteImport } from './routes/manager.menu'
@@ -32,11 +33,15 @@ import { Route as ManagerSubscribersRouteImport } from './routes/manager.subscri
 import { Route as ManagerTodayRouteImport } from './routes/manager.today'
 import { Route as StudentIndexRouteImport } from './routes/student.index'
 import { Route as StudentBillRouteImport } from './routes/student.bill'
+import { Route as StudentComplaintsRouteImport } from './routes/student.complaints'
 import { Route as StudentFeedbackRouteImport } from './routes/student.feedback'
+import { Route as StudentHelpRouteImport } from './routes/student.help'
 import { Route as StudentMealCalendarRouteImport } from './routes/student.meal-calendar'
 import { Route as StudentMealHistoryRouteImport } from './routes/student.meal-history'
+import { Route as StudentNotificationsRouteImport } from './routes/student.notifications'
 import { Route as StudentPaymentsRouteImport } from './routes/student.payments'
 import { Route as StudentPlansRouteImport } from './routes/student.plans'
+import { Route as StudentProfileRouteImport } from './routes/student.profile'
 import { Route as StudentSubscriptionRouteImport } from './routes/student.subscription'
 
 const IndexRoute = IndexRouteImport.update({
@@ -114,6 +119,11 @@ const AdminPlansRoute = AdminPlansRouteImport.update({
   path: '/plans',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminSubscriptionsRoute = AdminSubscriptionsRouteImport.update({
+  id: '/subscriptions',
+  path: '/subscriptions',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminUsersRoute = AdminUsersRouteImport.update({
   id: '/users',
   path: '/users',
@@ -154,9 +164,19 @@ const StudentBillRoute = StudentBillRouteImport.update({
   path: '/bill',
   getParentRoute: () => StudentRoute,
 } as any)
+const StudentComplaintsRoute = StudentComplaintsRouteImport.update({
+  id: '/complaints',
+  path: '/complaints',
+  getParentRoute: () => StudentRoute,
+} as any)
 const StudentFeedbackRoute = StudentFeedbackRouteImport.update({
   id: '/feedback',
   path: '/feedback',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentHelpRoute = StudentHelpRouteImport.update({
+  id: '/help',
+  path: '/help',
   getParentRoute: () => StudentRoute,
 } as any)
 const StudentMealCalendarRoute = StudentMealCalendarRouteImport.update({
@@ -169,6 +189,11 @@ const StudentMealHistoryRoute = StudentMealHistoryRouteImport.update({
   path: '/meal-history',
   getParentRoute: () => StudentRoute,
 } as any)
+const StudentNotificationsRoute = StudentNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => StudentRoute,
+} as any)
 const StudentPaymentsRoute = StudentPaymentsRouteImport.update({
   id: '/payments',
   path: '/payments',
@@ -177,6 +202,11 @@ const StudentPaymentsRoute = StudentPaymentsRouteImport.update({
 const StudentPlansRoute = StudentPlansRouteImport.update({
   id: '/plans',
   path: '/plans',
+  getParentRoute: () => StudentRoute,
+} as any)
+const StudentProfileRoute = StudentProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
   getParentRoute: () => StudentRoute,
 } as any)
 const StudentSubscriptionRoute = StudentSubscriptionRouteImport.update({
@@ -200,17 +230,22 @@ export interface FileRoutesByFullPath {
   '/student': typeof StudentRouteWithChildren
   '/admin/managers': typeof AdminManagersRoute
   '/admin/plans': typeof AdminPlansRoute
+  '/admin/subscriptions': typeof AdminSubscriptionsRoute
   '/admin/users': typeof AdminUsersRoute
   '/manager/menu': typeof ManagerMenuRoute
   '/manager/payments': typeof ManagerPaymentsRoute
   '/manager/subscribers': typeof ManagerSubscribersRoute
   '/manager/today': typeof ManagerTodayRoute
   '/student/bill': typeof StudentBillRoute
+  '/student/complaints': typeof StudentComplaintsRoute
   '/student/feedback': typeof StudentFeedbackRoute
+  '/student/help': typeof StudentHelpRoute
   '/student/meal-calendar': typeof StudentMealCalendarRoute
   '/student/meal-history': typeof StudentMealHistoryRoute
+  '/student/notifications': typeof StudentNotificationsRoute
   '/student/payments': typeof StudentPaymentsRoute
   '/student/plans': typeof StudentPlansRoute
+  '/student/profile': typeof StudentProfileRoute
   '/student/subscription': typeof StudentSubscriptionRoute
   '/admin/': typeof AdminIndexRoute
   '/manager/': typeof ManagerIndexRoute
@@ -228,17 +263,22 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/admin/managers': typeof AdminManagersRoute
   '/admin/plans': typeof AdminPlansRoute
+  '/admin/subscriptions': typeof AdminSubscriptionsRoute
   '/admin/users': typeof AdminUsersRoute
   '/manager/menu': typeof ManagerMenuRoute
   '/manager/payments': typeof ManagerPaymentsRoute
   '/manager/subscribers': typeof ManagerSubscribersRoute
   '/manager/today': typeof ManagerTodayRoute
   '/student/bill': typeof StudentBillRoute
+  '/student/complaints': typeof StudentComplaintsRoute
   '/student/feedback': typeof StudentFeedbackRoute
+  '/student/help': typeof StudentHelpRoute
   '/student/meal-calendar': typeof StudentMealCalendarRoute
   '/student/meal-history': typeof StudentMealHistoryRoute
+  '/student/notifications': typeof StudentNotificationsRoute
   '/student/payments': typeof StudentPaymentsRoute
   '/student/plans': typeof StudentPlansRoute
+  '/student/profile': typeof StudentProfileRoute
   '/student/subscription': typeof StudentSubscriptionRoute
   '/admin': typeof AdminIndexRoute
   '/manager': typeof ManagerIndexRoute
@@ -260,17 +300,22 @@ export interface FileRoutesById {
   '/student': typeof StudentRouteWithChildren
   '/admin/managers': typeof AdminManagersRoute
   '/admin/plans': typeof AdminPlansRoute
+  '/admin/subscriptions': typeof AdminSubscriptionsRoute
   '/admin/users': typeof AdminUsersRoute
   '/manager/menu': typeof ManagerMenuRoute
   '/manager/payments': typeof ManagerPaymentsRoute
   '/manager/subscribers': typeof ManagerSubscribersRoute
   '/manager/today': typeof ManagerTodayRoute
   '/student/bill': typeof StudentBillRoute
+  '/student/complaints': typeof StudentComplaintsRoute
   '/student/feedback': typeof StudentFeedbackRoute
+  '/student/help': typeof StudentHelpRoute
   '/student/meal-calendar': typeof StudentMealCalendarRoute
   '/student/meal-history': typeof StudentMealHistoryRoute
+  '/student/notifications': typeof StudentNotificationsRoute
   '/student/payments': typeof StudentPaymentsRoute
   '/student/plans': typeof StudentPlansRoute
+  '/student/profile': typeof StudentProfileRoute
   '/student/subscription': typeof StudentSubscriptionRoute
   '/admin/': typeof AdminIndexRoute
   '/manager/': typeof ManagerIndexRoute
@@ -293,17 +338,22 @@ export interface FileRouteTypes {
     | '/student'
     | '/admin/managers'
     | '/admin/plans'
+    | '/admin/subscriptions'
     | '/admin/users'
     | '/manager/menu'
     | '/manager/payments'
     | '/manager/subscribers'
     | '/manager/today'
     | '/student/bill'
+    | '/student/complaints'
     | '/student/feedback'
+    | '/student/help'
     | '/student/meal-calendar'
     | '/student/meal-history'
+    | '/student/notifications'
     | '/student/payments'
     | '/student/plans'
+    | '/student/profile'
     | '/student/subscription'
     | '/admin/'
     | '/manager/'
@@ -321,17 +371,22 @@ export interface FileRouteTypes {
     | '/register'
     | '/admin/managers'
     | '/admin/plans'
+    | '/admin/subscriptions'
     | '/admin/users'
     | '/manager/menu'
     | '/manager/payments'
     | '/manager/subscribers'
     | '/manager/today'
     | '/student/bill'
+    | '/student/complaints'
     | '/student/feedback'
+    | '/student/help'
     | '/student/meal-calendar'
     | '/student/meal-history'
+    | '/student/notifications'
     | '/student/payments'
     | '/student/plans'
+    | '/student/profile'
     | '/student/subscription'
     | '/admin'
     | '/manager'
@@ -352,17 +407,22 @@ export interface FileRouteTypes {
     | '/student'
     | '/admin/managers'
     | '/admin/plans'
+    | '/admin/subscriptions'
     | '/admin/users'
     | '/manager/menu'
     | '/manager/payments'
     | '/manager/subscribers'
     | '/manager/today'
     | '/student/bill'
+    | '/student/complaints'
     | '/student/feedback'
+    | '/student/help'
     | '/student/meal-calendar'
     | '/student/meal-history'
+    | '/student/notifications'
     | '/student/payments'
     | '/student/plans'
+    | '/student/profile'
     | '/student/subscription'
     | '/admin/'
     | '/manager/'
@@ -491,6 +551,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPlansRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/subscriptions': {
+      id: '/admin/subscriptions'
+      path: '/subscriptions'
+      fullPath: '/admin/subscriptions'
+      preLoaderRoute: typeof AdminSubscriptionsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/users': {
       id: '/admin/users'
       path: '/users'
@@ -547,11 +614,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentBillRouteImport
       parentRoute: typeof StudentRoute
     }
+    '/student/complaints': {
+      id: '/student/complaints'
+      path: '/complaints'
+      fullPath: '/student/complaints'
+      preLoaderRoute: typeof StudentComplaintsRouteImport
+      parentRoute: typeof StudentRoute
+    }
     '/student/feedback': {
       id: '/student/feedback'
       path: '/feedback'
       fullPath: '/student/feedback'
       preLoaderRoute: typeof StudentFeedbackRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/help': {
+      id: '/student/help'
+      path: '/help'
+      fullPath: '/student/help'
+      preLoaderRoute: typeof StudentHelpRouteImport
       parentRoute: typeof StudentRoute
     }
     '/student/meal-calendar': {
@@ -568,6 +649,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentMealHistoryRouteImport
       parentRoute: typeof StudentRoute
     }
+    '/student/notifications': {
+      id: '/student/notifications'
+      path: '/notifications'
+      fullPath: '/student/notifications'
+      preLoaderRoute: typeof StudentNotificationsRouteImport
+      parentRoute: typeof StudentRoute
+    }
     '/student/payments': {
       id: '/student/payments'
       path: '/payments'
@@ -580,6 +668,13 @@ declare module '@tanstack/react-router' {
       path: '/plans'
       fullPath: '/student/plans'
       preLoaderRoute: typeof StudentPlansRouteImport
+      parentRoute: typeof StudentRoute
+    }
+    '/student/profile': {
+      id: '/student/profile'
+      path: '/profile'
+      fullPath: '/student/profile'
+      preLoaderRoute: typeof StudentProfileRouteImport
       parentRoute: typeof StudentRoute
     }
     '/student/subscription': {
@@ -595,6 +690,7 @@ declare module '@tanstack/react-router' {
 interface AdminRouteChildren {
   AdminManagersRoute: typeof AdminManagersRoute
   AdminPlansRoute: typeof AdminPlansRoute
+  AdminSubscriptionsRoute: typeof AdminSubscriptionsRoute
   AdminUsersRoute: typeof AdminUsersRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -602,6 +698,7 @@ interface AdminRouteChildren {
 const AdminRouteChildren: AdminRouteChildren = {
   AdminManagersRoute: AdminManagersRoute,
   AdminPlansRoute: AdminPlansRoute,
+  AdminSubscriptionsRoute: AdminSubscriptionsRoute,
   AdminUsersRoute: AdminUsersRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
@@ -629,22 +726,30 @@ const ManagerRouteWithChildren =
 
 interface StudentRouteChildren {
   StudentBillRoute: typeof StudentBillRoute
+  StudentComplaintsRoute: typeof StudentComplaintsRoute
   StudentFeedbackRoute: typeof StudentFeedbackRoute
+  StudentHelpRoute: typeof StudentHelpRoute
   StudentMealCalendarRoute: typeof StudentMealCalendarRoute
   StudentMealHistoryRoute: typeof StudentMealHistoryRoute
+  StudentNotificationsRoute: typeof StudentNotificationsRoute
   StudentPaymentsRoute: typeof StudentPaymentsRoute
   StudentPlansRoute: typeof StudentPlansRoute
+  StudentProfileRoute: typeof StudentProfileRoute
   StudentSubscriptionRoute: typeof StudentSubscriptionRoute
   StudentIndexRoute: typeof StudentIndexRoute
 }
 
 const StudentRouteChildren: StudentRouteChildren = {
   StudentBillRoute: StudentBillRoute,
+  StudentComplaintsRoute: StudentComplaintsRoute,
   StudentFeedbackRoute: StudentFeedbackRoute,
+  StudentHelpRoute: StudentHelpRoute,
   StudentMealCalendarRoute: StudentMealCalendarRoute,
   StudentMealHistoryRoute: StudentMealHistoryRoute,
+  StudentNotificationsRoute: StudentNotificationsRoute,
   StudentPaymentsRoute: StudentPaymentsRoute,
   StudentPlansRoute: StudentPlansRoute,
+  StudentProfileRoute: StudentProfileRoute,
   StudentSubscriptionRoute: StudentSubscriptionRoute,
   StudentIndexRoute: StudentIndexRoute,
 }

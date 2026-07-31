@@ -69,10 +69,10 @@ function AdminManagersPage() {
 
   function validate(m: AppUser) {
     const e: Record<string, string> = {};
-    if (!m.name.trim()) e.name = "Name is required";
-    if (!/^\S+@\S+\.\S+$/.test(m.email)) e.email = "Enter a valid email";
-    if (!m.contact.trim()) e.contact = "Phone number is required";
-    if (!m.assignedMess?.trim()) e.assignedMess = "Assigned mess is required";
+    if (!m.name.trim()) e["name"] = "Name is required";
+    if (!/^\S+@\S+\.\S+$/.test(m.email)) e["email"] = "Enter a valid email";
+    if (!m.contact.trim()) e["contact"] = "Phone number is required";
+    if (!m.assignedMess?.trim()) e["assignedMess"] = "Assigned mess is required";
     return e;
   }
 
@@ -184,23 +184,23 @@ function AdminManagersPage() {
           <div className="space-y-3">
             <div>
               <Label htmlFor="m-name">Name</Label>
-              <Input id="m-name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} aria-invalid={!!errors.name} />
-              {errors.name && <p className="mt-1 text-xs text-destructive">{errors.name}</p>}
+              <Input id="m-name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} aria-invalid={!!errors["name"]} />
+              {errors["name"] && <p className="mt-1 text-xs text-destructive">{errors["name"]}</p>}
             </div>
             <div>
               <Label htmlFor="m-email">Email</Label>
-              <Input id="m-email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} aria-invalid={!!errors.email} />
-              {errors.email && <p className="mt-1 text-xs text-destructive">{errors.email}</p>}
+              <Input id="m-email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} aria-invalid={!!errors["email"]} />
+              {errors["email"] && <p className="mt-1 text-xs text-destructive">{errors["email"]}</p>}
             </div>
             <div>
               <Label htmlFor="m-phone">Phone</Label>
-              <Input id="m-phone" value={form.contact} onChange={(e) => setForm({ ...form, contact: e.target.value })} aria-invalid={!!errors.contact} />
-              {errors.contact && <p className="mt-1 text-xs text-destructive">{errors.contact}</p>}
+              <Input id="m-phone" value={form.contact} onChange={(e) => setForm({ ...form, contact: e.target.value })} aria-invalid={!!errors["contact"]} />
+              {errors["contact"] && <p className="mt-1 text-xs text-destructive">{errors["contact"]}</p>}
             </div>
             <div>
               <Label htmlFor="m-mess">Assigned Mess</Label>
-              <Input id="m-mess" value={form.assignedMess ?? ""} onChange={(e) => setForm({ ...form, assignedMess: e.target.value })} aria-invalid={!!errors.assignedMess} />
-              {errors.assignedMess && <p className="mt-1 text-xs text-destructive">{errors.assignedMess}</p>}
+              <Input id="m-mess" value={form.assignedMess ?? ""} onChange={(e) => setForm({ ...form, assignedMess: e.target.value })} aria-invalid={!!errors["assignedMess"]} />
+              {errors["assignedMess"] && <p className="mt-1 text-xs text-destructive">{errors["assignedMess"]}</p>}
             </div>
             <div>
               <Label htmlFor="m-status">Status</Label>

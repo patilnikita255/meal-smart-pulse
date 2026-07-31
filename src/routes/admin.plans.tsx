@@ -62,10 +62,10 @@ function AdminPlansPage() {
 
   function validate(p: Plan) {
     const e: Record<string, string> = {};
-    if (!p.name.trim()) e.name = "Plan name is required";
-    if (p.price <= 0) e.price = "Price must be greater than 0";
-    if (p.durationDays <= 0) e.durationDays = "Duration must be greater than 0";
-    if (p.includes.length === 0) e.includes = "Select at least one meal";
+    if (!p.name.trim()) e["name"] = "Plan name is required";
+    if (p.price <= 0) e["price"] = "Price must be greater than 0";
+    if (p.durationDays <= 0) e["durationDays"] = "Duration must be greater than 0";
+    if (p.includes.length === 0) e["includes"] = "Select at least one meal";
     return e;
   }
 
@@ -231,8 +231,8 @@ function PlanForm({
     <div className="space-y-3">
       <div>
         <Label htmlFor="p-name">Plan Name</Label>
-        <Input id="p-name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} aria-invalid={!!errors.name} />
-        {errors.name && <p className="mt-1 text-xs text-destructive">{errors.name}</p>}
+        <Input id="p-name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} aria-invalid={!!errors["name"]} />
+        {errors["name"] && <p className="mt-1 text-xs text-destructive">{errors["name"]}</p>}
       </div>
       <div className="grid grid-cols-2 gap-3">
         <div>
@@ -259,19 +259,19 @@ function PlanForm({
       <div className="grid grid-cols-3 gap-3">
         <div>
           <Label htmlFor="p-price">Price (₹)</Label>
-          <Input id="p-price" type="number" value={form.price} onChange={(e) => setForm({ ...form, price: Number(e.target.value) })} aria-invalid={!!errors.price} />
+          <Input id="p-price" type="number" value={form.price} onChange={(e) => setForm({ ...form, price: Number(e.target.value) })} aria-invalid={!!errors["price"]} />
         </div>
         <div>
           <Label htmlFor="p-duration">Duration (days)</Label>
-          <Input id="p-duration" type="number" value={form.durationDays} onChange={(e) => setForm({ ...form, durationDays: Number(e.target.value) })} aria-invalid={!!errors.durationDays} />
+          <Input id="p-duration" type="number" value={form.durationDays} onChange={(e) => setForm({ ...form, durationDays: Number(e.target.value) })} aria-invalid={!!errors["durationDays"]} />
         </div>
         <div>
           <Label htmlFor="p-meals">Total Meals</Label>
           <Input id="p-meals" type="number" value={form.meals} onChange={(e) => setForm({ ...form, meals: Number(e.target.value) })} />
         </div>
       </div>
-      {(errors.price || errors.durationDays) && (
-        <p className="text-xs text-destructive">{errors.price ?? errors.durationDays}</p>
+      {(errors["price"] || errors["durationDays"]) && (
+        <p className="text-xs text-destructive">{errors["price"] ?? errors["durationDays"]}</p>
       )}
       <div>
         <Label>Included Meals</Label>
@@ -286,7 +286,7 @@ function PlanForm({
             </label>
           ))}
         </div>
-        {errors.includes && <p className="mt-1 text-xs text-destructive">{errors.includes}</p>}
+        {errors["includes"] && <p className="mt-1 text-xs text-destructive">{errors["includes"]}</p>}
       </div>
       <div>
         <Label htmlFor="p-desc">Description</Label>

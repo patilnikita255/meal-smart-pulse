@@ -92,9 +92,9 @@ function AdminUsersPage() {
 
   function validate(u: AppUser) {
     const e: Record<string, string> = {};
-    if (!u.name.trim()) e.name = "Name is required";
-    if (!/^\S+@\S+\.\S+$/.test(u.email)) e.email = "Enter a valid email";
-    if (!u.contact.trim()) e.contact = "Contact number is required";
+    if (!u.name.trim()) e["name"] = "Name is required";
+    if (!/^\S+@\S+\.\S+$/.test(u.email)) e["email"] = "Enter a valid email";
+    if (!u.contact.trim()) e["contact"] = "Contact number is required";
     return e;
   }
 
@@ -267,15 +267,15 @@ function AdminUsersPage() {
             <div className="space-y-3">
               <div>
                 <Label htmlFor="edit-name">Name</Label>
-                <Input id="edit-name" value={editUser.name} onChange={(e) => setEditUser({ ...editUser, name: e.target.value })} aria-invalid={!!errors.name} />
+                <Input id="edit-name" value={editUser.name} onChange={(e) => setEditUser({ ...editUser, name: e.target.value })} aria-invalid={!!errors["name"]} />
               </div>
               <div>
                 <Label htmlFor="edit-email">Email</Label>
-                <Input id="edit-email" value={editUser.email} onChange={(e) => setEditUser({ ...editUser, email: e.target.value })} aria-invalid={!!errors.email} />
+                <Input id="edit-email" value={editUser.email} onChange={(e) => setEditUser({ ...editUser, email: e.target.value })} aria-invalid={!!errors["email"]} />
               </div>
               <div>
                 <Label htmlFor="edit-contact">Contact</Label>
-                <Input id="edit-contact" value={editUser.contact} onChange={(e) => setEditUser({ ...editUser, contact: e.target.value })} aria-invalid={!!errors.contact} />
+                <Input id="edit-contact" value={editUser.contact} onChange={(e) => setEditUser({ ...editUser, contact: e.target.value })} aria-invalid={!!errors["contact"]} />
               </div>
               <div>
                 <Label htmlFor="edit-role">Role</Label>
@@ -307,18 +307,18 @@ function AdminUsersPage() {
           <div className="space-y-3">
             <div>
               <Label htmlFor="add-name">Name</Label>
-              <Input id="add-name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} aria-invalid={!!errors.name} />
-              {errors.name && <p className="mt-1 text-xs text-destructive">{errors.name}</p>}
+              <Input id="add-name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} aria-invalid={!!errors["name"]} />
+              {errors["name"] && <p className="mt-1 text-xs text-destructive">{errors["name"]}</p>}
             </div>
             <div>
               <Label htmlFor="add-email">Email</Label>
-              <Input id="add-email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} aria-invalid={!!errors.email} />
-              {errors.email && <p className="mt-1 text-xs text-destructive">{errors.email}</p>}
+              <Input id="add-email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} aria-invalid={!!errors["email"]} />
+              {errors["email"] && <p className="mt-1 text-xs text-destructive">{errors["email"]}</p>}
             </div>
             <div>
               <Label htmlFor="add-contact">Contact</Label>
-              <Input id="add-contact" value={form.contact} onChange={(e) => setForm({ ...form, contact: e.target.value })} aria-invalid={!!errors.contact} />
-              {errors.contact && <p className="mt-1 text-xs text-destructive">{errors.contact}</p>}
+              <Input id="add-contact" value={form.contact} onChange={(e) => setForm({ ...form, contact: e.target.value })} aria-invalid={!!errors["contact"]} />
+              {errors["contact"] && <p className="mt-1 text-xs text-destructive">{errors["contact"]}</p>}
             </div>
             <div>
               <Label htmlFor="add-role">Role</Label>
