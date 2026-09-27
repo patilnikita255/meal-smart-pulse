@@ -491,7 +491,7 @@ export function AppStoreProvider({ children }: { children: ReactNode }) {
     const subUuid = (code: string) => idMaps.current.sub.get(code) ?? code;
     const complaintUuid = (code: string) => idMaps.current.complaint.get(code) ?? code;
 
-    return {
+    const store: AppStore = {
       ...state,
       hydrated,
       loadError,
@@ -562,7 +562,7 @@ export function AppStoreProvider({ children }: { children: ReactNode }) {
       togglePlanStatus: (id) => {
         const plan = state.plans.find((p) => p.id === id);
         if (!plan) return Promise.resolve(false);
-        return value.upsertPlan({ ...plan, status: plan.status === "Active" ? "Inactive" : "Active" });
+        return store.upsertPlan({ ...plan, status: plan.status === "Active" ? "Inactive" : "Active" });
       },
 
       upsertUser: (user) => {
@@ -594,7 +594,7 @@ export function AppStoreProvider({ children }: { children: ReactNode }) {
       toggleUserStatus: (id) => {
         const u = state.users.find((x) => x.id === id);
         if (!u) return Promise.resolve(false);
-        return value.upsertUser({ ...u, status: u.status === "Active" ? "Inactive" : "Active" });
+        return store.upsertUser({ ...u, status: u.status === "Active" ? "Inactive" : "Active" });
       },
       changePassword: (next) => run(() => supabase.auth.updateUser({ password: next })),
 
@@ -615,7 +615,7 @@ export function AppStoreProvider({ children }: { children: ReactNode }) {
       deactivateMenu: (id) => {
         const m = state.menus.find((x) => x.id === id);
         if (!m) return Promise.resolve(false);
-        return value.upsertMenu({ ...m, active: false });
+        return store.upsertMenu({ ...m, active: false });
       },
 
       addComplaint: (c) =>
@@ -645,6 +645,7 @@ export function AppStoreProvider({ children }: { children: ReactNode }) {
 
       updateSettings: (p) => run(() => db.rpc("update_settings", { p: { ...state.settings, ...p } })),
     };
+    return store;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state, hydrated, loadError, run, reload]);
 
