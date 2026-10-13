@@ -24,7 +24,7 @@ import type {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const db = supabase as any;
 
-type Row = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
+type Row = any; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 const ROLE_FROM_DB: Record<string, Role> = { STUDENT: "student", MESS_MANAGER: "manager", ADMIN: "admin" };
 const MEAL_TO_DB: Record<MealType, string> = { Breakfast: "BREAKFAST", Lunch: "LUNCH", Dinner: "DINNER" };
