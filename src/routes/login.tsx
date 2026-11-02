@@ -43,7 +43,7 @@ function LoginPage() {
         ? "manager.demo@foodpulse.demo"
         : "admin.demo@foodpulse.demo";
     setEmail(demoEmail);
-    toast.info("Enter this account’s password to continue.");
+    toast.info("Use the password for this account to continue.");
   };
 
   const submit = async (e: React.FormEvent) => {
