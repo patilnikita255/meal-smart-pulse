@@ -30,19 +30,23 @@ const demoRoles: { role: Role; label: string; desc: string; icon: typeof Graduat
 ];
 
 function LoginPage() {
-  const { login } = useApp();
+  const { login, signIn } = useApp();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
 
   const enter = (role: Role) => {
-    login(role);
-    toast.success(`Signed in to the ${role} demo`);
-    navigate({ to: roleHome[role] });
+    const demoEmail = role === "student"
+      ? "student.demo@foodpulse.demo"
+      : role === "manager"
+        ? "manager.demo@foodpulse.demo"
+        : "admin.demo@foodpulse.demo";
+    setEmail(demoEmail);
+    toast.info("Enter this account’s password to continue.");
   };
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     const next: { email?: string; password?: string } = {};
     if (!email.trim()) next.email = "Email is required";
@@ -50,8 +54,14 @@ function LoginPage() {
     if (!password) next.password = "Password is required";
     setErrors(next);
     if (Object.keys(next).length > 0) return;
-    const role: Role = email.includes("admin") ? "admin" : email.includes("mess") || email.includes("manager") ? "manager" : "student";
-    enter(role);
+    try {
+      const role = await signIn(email.trim(), password);
+      if (!role) throw new Error("Unable to load your account.");
+      toast.success("Signed in successfully.");
+      await navigate({ to: roleHome[role] });
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Unable to sign in. Please try again.");
+    }
   };
 
   return (
@@ -80,7 +90,7 @@ function LoginPage() {
           </dl>
         </div>
         <p className="text-xs text-muted-foreground">
-          Frontend demonstration prototype — no real authentication or payments.
+          Secure sign-in for students, mess managers and administrators.
         </p>
       </div>
 
