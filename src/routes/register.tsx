@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Logo } from "@/components/fp/logo";
 import { useApp } from "@/store/app-store";
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -39,7 +40,6 @@ function strength(pw: string) {
 
 function RegisterPage() {
   const navigate = useNavigate();
-  const { login } = useApp();
   const [form, setForm] = useState<FormState>({ name: "", email: "", contact: "", password: "", confirm: "" });
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
 
@@ -47,7 +47,7 @@ function RegisterPage() {
   const score = strength(form.password);
   const labels = ["Too weak", "Weak", "Fair", "Strong", "Very strong"];
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     const next: Partial<Record<keyof FormState, string>> = {};
     if (!form.name.trim()) next.name = "Full name is required";
@@ -58,9 +58,20 @@ function RegisterPage() {
     if (form.password !== form.confirm) next.confirm = "Passwords do not match";
     setErrors(next);
     if (Object.keys(next).length > 0) return;
-    login("student");
-    toast.success("Account created — welcome to FoodPulse!");
-    navigate({ to: "/student" });
+    const { error } = await supabase.auth.signUp({
+      email: form.email.trim(),
+      password: form.password,
+      options: {
+        emailRedirectTo: window.location.origin,
+        data: { full_name: form.name.trim(), phone: form.contact.trim() },
+      },
+    });
+    if (error) {
+      toast.error(/already/i.test(error.message) ? "An account with this email already exists." : error.message);
+      return;
+    }
+    toast.success("Account created. Check your email to confirm your address before signing in.");
+    await navigate({ to: "/login" });
   };
 
   return (
@@ -69,7 +80,7 @@ function RegisterPage() {
         <Logo />
         <h1 className="mt-6 font-display text-2xl font-semibold">Create your account</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Register as a student to subscribe to a mess plan. Demo only — no data leaves your browser.
+          Register as a student to subscribe to a mess plan.
         </p>
 
         <form onSubmit={submit} className="mt-6 space-y-4" noValidate>

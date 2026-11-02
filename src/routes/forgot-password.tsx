@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Logo } from "@/components/fp/logo";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/forgot-password")({
   head: () => ({
@@ -23,13 +24,20 @@ function ForgotPasswordPage() {
   const [error, setError] = useState("");
   const [sent, setSent] = useState(false);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setError("Enter a valid email address");
       return;
     }
     setError("");
+    const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+    if (resetError) {
+      setError("Unable to send a reset link right now. Please try again.");
+      return;
+    }
     setSent(true);
   };
 
@@ -45,7 +53,7 @@ function ForgotPasswordPage() {
             <h1 className="mt-4 font-display text-xl font-semibold">Reset link sent</h1>
             <p className="mt-2 text-sm text-muted-foreground">
               If <span className="font-medium text-foreground">{email}</span> is registered, a password reset link
-              has been sent. This is a simulated step in the FoodPulse demo.
+              has been sent.
             </p>
             <Button asChild className="mt-5 w-full">
               <Link to="/login">Back to login</Link>
